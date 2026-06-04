@@ -1,8 +1,17 @@
 import type React from 'react';
 
-import { Archive, BriefcaseBusiness, Calendar, Clipboard, HeartPulse, Home, UserRoundCog, Users } from 'lucide-react';
+import {
+  Archive,
+  BriefcaseBusiness,
+  Calendar,
+  Clipboard,
+  HeartPulse,
+  Home,
+  UserRoundCog,
+  Users,
+} from 'lucide-react';
 
-import type { AbilityRule } from '@/types/ability-rule.type';
+import type { AbilityRule } from '#/types/ability-rule.type';
 
 export type NavigationGroup = {
   label: string;
