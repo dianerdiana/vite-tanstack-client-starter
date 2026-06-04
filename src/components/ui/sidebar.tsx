@@ -23,7 +23,7 @@ import {
   TooltipTrigger,
 } from '#/components/ui/tooltip.tsx';
 
-import { useIsMobile } from '#/hooks/use-mobile.ts';
+import { useIsMobile } from '#/hooks/use-mobile';
 
 import { cn } from '#/utils/utils.ts';
 
@@ -92,7 +92,9 @@ function SidebarProvider({
 
   // Helper to toggle the sidebar.
   const toggleSidebar = React.useCallback(() => {
-    return isMobile ? setOpenMobile((open) => !open) : setOpen((open) => !open);
+    return isMobile
+      ? setOpenMobile((currentOpenMobile) => !currentOpenMobile)
+      : setOpen((currentOpenMobile) => !currentOpenMobile);
   }, [isMobile, setOpen, setOpenMobile]);
 
   // Adds a keyboard shortcut to toggle the sidebar.
@@ -591,7 +593,6 @@ function SidebarMenuSkeleton({
 }) {
   // Random width between 50 to 90%.
   const width = React.useMemo(() => {
-    // eslint-disable-next-line react-hooks/purity
     return `${Math.floor(Math.random() * 40) + 50}%`;
   }, []);
 

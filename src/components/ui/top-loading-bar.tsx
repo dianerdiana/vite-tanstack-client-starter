@@ -19,7 +19,6 @@ export const TopLoadingBar = () => {
     let doneTimer: number | undefined;
 
     if (isLoading) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsVisible(true);
       setValue((v) => (v === 0 ? 10 : v));
 
