@@ -2,10 +2,10 @@ import React from 'react';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-import { api } from '@/configs/api-config';
+import { api } from '#/configs/api-config';
 
-import { toApiError } from '@/utils/api-error.util';
-import { unwrapApiResponse } from '@/utils/api-response.util';
+import { toApiError } from '#/utils/api-error.util';
+import { unwrapApiResponse } from '#/utils/api-response.util';
 
 const defaultQueryFn = async ({ queryKey }: { queryKey: any }) => {
   try {
