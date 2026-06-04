@@ -5,5 +5,5 @@ export default {
   loginUrl: '/auth/login',
   registerUrl: '/auth/register',
   logoutUrl: '/auth/logout',
-  refreshTokenUrl: '/auth/me',
+  refreshTokenUrl: '/auth/refresh',
 };
