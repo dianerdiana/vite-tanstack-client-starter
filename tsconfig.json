@@ -6,7 +6,9 @@
     "jsx": "react-jsx",
     "module": "ESNext",
     "paths": {
-      "#/*": ["./src/*"]
+      "#/*": ["./src/*"],
+      "#/hooks/*": ["./src/utils/hooks/*"],
+      "#/context/*": ["./src/utils/context/*"]
     },
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "types": ["vite/client"],
