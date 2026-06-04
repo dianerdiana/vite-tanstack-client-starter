@@ -29,18 +29,13 @@ export default [
             ['^@?\\w'],
 
             // Internal alias
-            ['^@/assets'],
             ['^@/components'],
             ['^@/configs'],
             ['^@/context'],
             ['^@/hooks'],
             ['^@/integrations'],
-            ['^@/layouts'],
-            ['^@/lib'],
-            ['^@/modules'],
-            ['^@/navigation'],
+            ['^@/features'],
             ['^@/utils'],
-            ['^@/queries'],
             ['^@/types'],
 
             // Parent
