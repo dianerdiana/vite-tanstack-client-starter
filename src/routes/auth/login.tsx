@@ -43,7 +43,7 @@ function LoginPage() {
           </Link>
         </div>
         <div className='flex flex-1 pt-10 justify-center'>
-          <div className='w-full max-w-xs'>
+          <div className='w-full max-w-xs flex flex-col justify-center'>
             <form
               className='flex flex-col gap-6'
               onSubmit={(e) => {
@@ -67,7 +67,7 @@ function LoginPage() {
                       aria-invalid={!field.state.meta.isValid}
                       id='identifier'
                       name='identifier'
-                      placeholder='technical@talentaindonesia.id'
+                      placeholder='admin@dianerdiana.com'
                     />
                   )}
                 </form.Field>
@@ -116,21 +116,11 @@ function LoginPage() {
       <div className='hidden bg-primary lg:block'>
         <div className='w-full h-full flex flex-wrap items-center justify-center'>
           <div className='flex flex-wrap justify-center'>
-            <div className='w-1/2 mb-4'>
-              <img
-                src='/images/support/laptop-talenta.svg'
-                alt='Image'
-                className='inset-0 h-full w-full object-cover'
-              />
-            </div>
-
-            <div className='text-center'>
-              <p className='font-medium text-2xl text-white'>
-                Online Assessment by Talenta Indonesia
-              </p>
-              <p className='text-white text-sm'>
-                Konsultan ahli (psikolog) yang kompeten di bidangnya dan komprehensif dalam
-                pelayanan
+            <div className='text-center text-background'>
+              <p className='font-medium text-2xl'>Dapatkan pengalaman terbaik dalam pelayanan</p>
+              <p className='text-sm'>
+                Fullstack Developer dengan pengalaman lebih dari 5 tahun dalam membangun aplikasi
+                web yang responsif dan user-friendly.
               </p>
             </div>
           </div>

@@ -32,7 +32,7 @@ export const Route = createFileRoute('/admin')({
 const data = {
   user: {
     name: 'Dian Erdiana',
-    email: 'dianerdiana@talentaindonesia.id',
+    email: 'admin@dianerdiana.com',
     avatar: '/avatars/shadcn.jpg',
   },
   navMain: [
