@@ -1,6 +1,7 @@
 import * as React from 'react';
 
-import { cva, type VariantProps } from 'class-variance-authority';
+import type { VariantProps } from 'class-variance-authority';
+import { cva } from 'class-variance-authority';
 import { PanelLeftIcon } from 'lucide-react';
 import { Slot } from 'radix-ui';
 
@@ -15,9 +16,15 @@ import {
   SheetTitle,
 } from '#/components/ui/sheet.tsx';
 import { Skeleton } from '#/components/ui/skeleton.tsx';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '#/components/ui/tooltip.tsx';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '#/components/ui/tooltip.tsx';
 
 import { useIsMobile } from '#/hooks/use-mobile.ts';
+
 import { cn } from '#/utils/utils.ts';
 
 const SIDEBAR_COOKIE_NAME = 'sidebar_state';

@@ -4,9 +4,9 @@ import * as React from 'react';
 
 import { Avatar as AvatarPrimitive } from 'radix-ui';
 
-import { env } from '#/src/configs/env.ts';
-
 import { cn } from '#/utils/utils.ts';
+
+import { env } from '#/src/configs/env.ts';
 
 function Avatar({
   className,
