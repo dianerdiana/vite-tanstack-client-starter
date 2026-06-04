@@ -8,7 +8,7 @@ interface BaseImageProps extends ComponentPropsWithoutRef<'img'> {
 }
 
 export const ImageServer: React.FC<BaseImageProps> = ({ src, ...restProps }) => {
-  const baseUrl = env.baseImageUrl || '';
+  const baseUrl = env.baseServerUrl || '';
 
   const fullSrc = src ? `${baseUrl}${src}` : undefined;
 
