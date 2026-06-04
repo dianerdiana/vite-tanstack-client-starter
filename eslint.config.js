@@ -1,7 +1,8 @@
 //  @ts-check
 
-import { tanstackConfig } from '@tanstack/eslint-config'
-import simpleImportSort from 'eslint-plugin-simple-import-sort'
+import { tanstackConfig } from '@tanstack/eslint-config';
+import simpleImportSort from 'eslint-plugin-simple-import-sort';
+import prettier from 'eslint-config-prettier';
 
 export default [
   ...tanstackConfig,
@@ -12,6 +13,9 @@ export default [
   },
   {
     rules: {
+      semi: ['error', 'always'],
+      '@typescript-eslint/semi': ['error', 'always'],
+
       'simple-import-sort/imports': [
         'error',
         {
@@ -62,4 +66,5 @@ export default [
   {
     ignores: ['eslint.config.js', 'prettier.config.js'],
   },
-]
+  prettier,
+];

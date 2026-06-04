@@ -1,19 +1,19 @@
-import axios from 'axios'
+import axios from 'axios';
 
-import type { ErrorResponse } from '#/types/api-response.type'
+import type { ErrorResponse } from '#/types/api-response.type';
 
 export const isErrorResponse = (value: unknown): value is ErrorResponse => {
-  if (!value || typeof value !== 'object') return false
+  if (!value || typeof value !== 'object') return false;
 
-  const data = value as Partial<ErrorResponse>
+  const data = value as Partial<ErrorResponse>;
 
-  return data.status === 'error' && typeof data.message === 'string'
-}
+  return data.status === 'error' && typeof data.message === 'string';
+};
 
 export const toApiError = (e: unknown): ErrorResponse => {
   if (axios.isAxiosError(e)) {
-    const data = e.response?.data
-    const httpStatus = e.response?.status
+    const data = e.response?.data;
+    const httpStatus = e.response?.status;
 
     if (isErrorResponse(data)) {
       return {
@@ -23,7 +23,7 @@ export const toApiError = (e: unknown): ErrorResponse => {
         details: data.details,
         httpStatus,
         isNetworkError: false,
-      }
+      };
     }
 
     return {
@@ -32,18 +32,18 @@ export const toApiError = (e: unknown): ErrorResponse => {
       code: e.code,
       httpStatus,
       isNetworkError: !e.response,
-    }
+    };
   }
 
   if (e instanceof Error) {
     return {
       status: 'error',
       message: e.message,
-    }
+    };
   }
 
   return {
     status: 'error',
     message: 'Unknown error',
-  }
-}
+  };
+};
