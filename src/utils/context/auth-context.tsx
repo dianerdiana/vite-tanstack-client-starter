@@ -4,8 +4,9 @@ import type { AxiosResponse } from 'axios';
 
 import { api } from '#/configs/api-config';
 
-import type { LoginResponse } from '#/features/auth/auth.response';
-import type { LoginDto } from '#/features/auth/auth.schema';
+import type { LoginDto } from '#/features/auth/schemas/login.schema';
+import type { RegisterDto } from '#/features/auth/schemas/register.schema';
+import type { LoginResponse } from '#/features/auth/types/auth.response';
 
 import { createAbility } from '#/utils/create-ability';
 
@@ -23,8 +24,8 @@ const EMPTY_PERMISSIONS: AbilityRule[] = [];
 export type AuthContextType = {
   isAuthenticated: boolean;
   isInitialLoading: boolean;
-  login: (credentials: any) => Promise<ApiResponse<LoginResponse>>;
-  register: (credentials: any) => Promise<ApiResponse<LoginResponse>>;
+  login: (credentials: LoginDto) => Promise<ApiResponse<LoginResponse>>;
+  register: (credentials: RegisterDto) => Promise<ApiResponse<LoginResponse>>;
   logout: () => Promise<void>;
   userData: UserData;
 };
