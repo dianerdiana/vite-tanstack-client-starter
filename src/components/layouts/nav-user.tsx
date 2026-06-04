@@ -1,3 +1,4 @@
+import { useNavigate } from '@tanstack/react-router';
 import {
   BadgeCheckIcon,
   BellIcon,
@@ -24,6 +25,8 @@ import {
   useSidebar,
 } from '#/components/ui/sidebar';
 
+import { useAuth } from '#/utils/hooks/use-auth';
+
 export function NavUser({
   user,
 }: {
@@ -34,6 +37,16 @@ export function NavUser({
   };
 }) {
   const { isMobile } = useSidebar();
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await logout();
+    await navigate({
+      to: '/auth/login',
+      replace: true,
+    });
+  };
 
   return (
     <SidebarMenu>
@@ -96,7 +109,12 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem
+              onSelect={(event) => {
+                event.preventDefault();
+                void handleLogout();
+              }}
+            >
               <LogOutIcon />
               Log out
             </DropdownMenuItem>
