@@ -33,14 +33,14 @@ export default [
             ['^@?\\w'],
 
             // Internal alias
-            ['^@/components'],
-            ['^@/configs'],
-            ['^@/context'],
-            ['^@/hooks'],
-            ['^@/integrations'],
-            ['^@/features'],
-            ['^@/utils'],
-            ['^@/types'],
+            ['^#/components'],
+            ['^#/configs'],
+            ['^#/context'],
+            ['^#/hooks'],
+            ['^#/integrations'],
+            ['^#/features'],
+            ['^#/utils'],
+            ['^#/types'],
 
             // Parent
             ['^\\.\\.(?!/?$)', '^\\.\\./?$'],

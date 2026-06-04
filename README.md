@@ -199,3 +199,5 @@ Files prefixed with `demo` can be safely deleted. They are there to provide a st
 You can learn more about all of the offerings from TanStack in the [TanStack documentation](https://tanstack.com).
 
 For TanStack Start specific documentation, visit [TanStack Start](https://tanstack.com/start).
+
+badge breadcrumb button calendar card carousel collapsible combobox dialog dropdown-menu field input-group input label pagination popover progress radio-group scroll-area select separator sheet sidebar skeleton slider sonner switch table tabs textarea tooltip
