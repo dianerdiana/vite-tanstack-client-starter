@@ -1,5 +1,5 @@
 {
-  "name": "frontend-platform",
+  "name": "vite-tanstack-client-starter",
   "private": true,
   "type": "module",
   "imports": {
