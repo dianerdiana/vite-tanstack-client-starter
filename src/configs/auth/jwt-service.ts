@@ -78,8 +78,6 @@ export class JwtService {
           this.logout();
           return Promise.reject(refreshError);
         }
-
-        return Promise.reject(error);
       },
     );
   }
@@ -132,19 +130,17 @@ export class JwtService {
   }
 
   getToken(): string | null {
-    const existingToken = localStorage.getItem(this.jwtConfig.storageTokenKeyName);
+    const existingToken = this.accessToken;
 
-    return existingToken ? JSON.parse(existingToken) : null;
+    return existingToken;
   }
 
   setToken(token: string) {
     this.accessToken = token;
-    localStorage.setItem(this.jwtConfig.storageTokenKeyName, JSON.stringify(token));
   }
 
   removeToken() {
     this.accessToken = null;
-    localStorage.removeItem(this.jwtConfig.storageTokenKeyName);
   }
 
   getStorageTokenKeyName() {
@@ -152,7 +148,6 @@ export class JwtService {
   }
 
   refreshToken(): Promise<AxiosResponse> {
-    // Backend saat ini menggunakan /auth/me untuk revalidasi sesi token yang ada.
     return this.axin.get(this.jwtConfig.refreshTokenUrl);
   }
 
