@@ -1,4 +1,4 @@
-import type { ApiResponse, PaginatedResult } from '#/types/api-response.type';
+import type { ApiResponse, PaginatedResult } from '@/types/api-response.type';
 
 export const unwrapApiResponse = <T>(response: ApiResponse<T>): T => {
   if (response.status === 'success') {

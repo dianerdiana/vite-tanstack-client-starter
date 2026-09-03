@@ -1,7 +1,7 @@
 import { Link, useRouter } from '@tanstack/react-router';
 import { AlertCircle, Home, MoveLeft } from 'lucide-react';
 
-import { Button } from '#/components/ui/button';
+import { Button } from '@/components/ui/button';
 
 export default function NotFound() {
   const router = useRouter();
@@ -21,15 +21,11 @@ export default function NotFound() {
         </div>
 
         <div className='space-y-2'>
-          <h1 className='text-8xl font-extrabold tracking-tighter text-foreground drop-shadow-sm'>
-            404
-          </h1>
-          <h2 className='text-2xl font-bold tracking-tight text-foreground sm:text-3xl'>
-            Page Not Found
-          </h2>
+          <h1 className='text-8xl font-extrabold tracking-tighter text-foreground drop-shadow-sm'>404</h1>
+          <h2 className='text-2xl font-bold tracking-tight text-foreground sm:text-3xl'>Page Not Found</h2>
           <p className='text-sm text-muted-foreground'>
-            Sorry, we couldn't find the page you are looking for. Perhaps the link is broken or the
-            page has been removed.
+            Sorry, we couldn't find the page you are looking for. Perhaps the link is broken or the page has been
+            removed.
           </p>
         </div>
 

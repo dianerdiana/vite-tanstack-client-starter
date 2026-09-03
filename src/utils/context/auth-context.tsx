@@ -2,18 +2,17 @@ import { createContext, useContext, useEffect, useState } from 'react';
 
 import type { AxiosResponse } from 'axios';
 
-import { api } from '#/configs/api-config';
+import { api } from '@/configs/api-config';
 
-import type { LoginDto } from '#/features/auth/schemas/login.schema';
-import type { RegisterDto } from '#/features/auth/schemas/register.schema';
-import type { LoginResponse } from '#/features/auth/types/auth.response';
+import type { LoginResponse } from '@/features/auth/auth.response';
+import type { LoginDto } from '@/features/auth/auth.schema';
 
-import { createAbility } from '#/utils/create-ability';
+import { createAbility } from '../create-ability';
 
-import type { AbilityRule } from '#/types/ability-rule.type';
-import type { ApiResponse } from '#/types/api-response.type';
-import { UserRole } from '#/types/enums/user-role.enum';
-import type { UserData } from '#/types/user-data.type';
+import type { AbilityRule } from '@/types/ability-rule.type';
+import type { ApiResponse } from '@/types/api-response.type';
+import { UserRole } from '@/types/enums/user-role.enum';
+import type { UserData } from '@/types/user-data.type';
 
 import { toApiError } from '../api-error.util';
 
@@ -24,8 +23,8 @@ const EMPTY_PERMISSIONS: AbilityRule[] = [];
 export type AuthContextType = {
   isAuthenticated: boolean;
   isInitialLoading: boolean;
-  login: (credentials: LoginDto) => Promise<ApiResponse<LoginResponse>>;
-  register: (credentials: RegisterDto) => Promise<ApiResponse<LoginResponse>>;
+  login: (credentials: any) => Promise<ApiResponse<LoginResponse>>;
+  register: (credentials: any) => Promise<ApiResponse<LoginResponse>>;
   logout: () => Promise<void>;
   userData: UserData;
 };
@@ -51,15 +50,12 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
 
   const login = async (credentials: any): Promise<ApiResponse<LoginResponse>> => {
     try {
-      const response = await api.post<LoginDto, ApiResponse<LoginResponse>>(
-        '/auth/login',
-        credentials,
-      );
+      const response = await api.post<LoginDto, ApiResponse<LoginResponse>>('/auth/login', credentials);
 
       if (response.data.status === 'success') {
         const { data } = response.data;
         updateAbility(data.user.permissions);
-        api.setToken(data.accessToken);
+        api.setToken(data.token);
         setUserData(data.user);
         setIsInitialLoading(false);
       }
@@ -70,9 +66,7 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  const register = async (
-    credentials: any,
-  ): Promise<AxiosResponse<ApiResponse<LoginResponse>> | any> => {
+  const register = async (credentials: any): Promise<AxiosResponse<ApiResponse<LoginResponse>> | any> => {
     try {
       const response = await api.register(credentials);
 
@@ -92,6 +86,7 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
     const token = api.getToken();
 
     if (!token) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsInitialLoading(false);
       return;
     }
@@ -124,6 +119,8 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
     return () => {
       window.removeEventListener('storage', handleStorage);
     };
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -136,13 +133,13 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
         logout,
         userData: userData
           ? userData
-          : {
+          : ({
               id: '',
-              role: UserRole.CLIENT_STAFF,
+              role: UserRole.USER,
               name: '',
               email: '',
               permissions: EMPTY_PERMISSIONS,
-            },
+            } as UserData),
       }}
     >
       {children}

@@ -3,8 +3,8 @@
 // Template config options
 export const themeConfig = {
   app: {
-    appName: 'SEHATMURAH',
-    appType: 'Appointment Doctor',
+    appName: 'TOOANG',
+    appType: 'Digital Menu',
     logoBrandName: '/assets/logo/logo-brand-name.png',
     logoBrand: '/assets/logo/logo-brand.png',
     localCurrency: 'id-ID',

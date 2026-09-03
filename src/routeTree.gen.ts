@@ -9,116 +9,50 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as AdminRouteImport } from './routes/admin'
-import { Route as BlankLayoutRouteImport } from './routes/_blank-layout'
-import { Route as AuthLoginRouteImport } from './routes/auth/login'
-import { Route as AdminDashboardRouteImport } from './routes/admin/dashboard'
+import { Route as NotFoundRouteImport } from './routes/not-found'
 
-const AdminRoute = AdminRouteImport.update({
-  id: '/admin',
-  path: '/admin',
+const NotFoundRoute = NotFoundRouteImport.update({
+  id: '/not-found',
+  path: '/not-found',
   getParentRoute: () => rootRouteImport,
-} as any)
-const BlankLayoutRoute = BlankLayoutRouteImport.update({
-  id: '/_blank-layout',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AuthLoginRoute = AuthLoginRouteImport.update({
-  id: '/auth/login',
-  path: '/auth/login',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminDashboardRoute = AdminDashboardRouteImport.update({
-  id: '/dashboard',
-  path: '/dashboard',
-  getParentRoute: () => AdminRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof BlankLayoutRoute
-  '/admin': typeof AdminRouteWithChildren
-  '/admin/dashboard': typeof AdminDashboardRoute
-  '/auth/login': typeof AuthLoginRoute
+  '/not-found': typeof NotFoundRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof BlankLayoutRoute
-  '/admin': typeof AdminRouteWithChildren
-  '/admin/dashboard': typeof AdminDashboardRoute
-  '/auth/login': typeof AuthLoginRoute
+  '/not-found': typeof NotFoundRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/_blank-layout': typeof BlankLayoutRoute
-  '/admin': typeof AdminRouteWithChildren
-  '/admin/dashboard': typeof AdminDashboardRoute
-  '/auth/login': typeof AuthLoginRoute
+  '/not-found': typeof NotFoundRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/admin' | '/admin/dashboard' | '/auth/login'
+  fullPaths: '/not-found'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin' | '/admin/dashboard' | '/auth/login'
-  id:
-    | '__root__'
-    | '/_blank-layout'
-    | '/admin'
-    | '/admin/dashboard'
-    | '/auth/login'
+  to: '/not-found'
+  id: '__root__' | '/not-found'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  BlankLayoutRoute: typeof BlankLayoutRoute
-  AdminRoute: typeof AdminRouteWithChildren
-  AuthLoginRoute: typeof AuthLoginRoute
+  NotFoundRoute: typeof NotFoundRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/admin': {
-      id: '/admin'
-      path: '/admin'
-      fullPath: '/admin'
-      preLoaderRoute: typeof AdminRouteImport
+    '/not-found': {
+      id: '/not-found'
+      path: '/not-found'
+      fullPath: '/not-found'
+      preLoaderRoute: typeof NotFoundRouteImport
       parentRoute: typeof rootRouteImport
-    }
-    '/_blank-layout': {
-      id: '/_blank-layout'
-      path: ''
-      fullPath: '/'
-      preLoaderRoute: typeof BlankLayoutRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/auth/login': {
-      id: '/auth/login'
-      path: '/auth/login'
-      fullPath: '/auth/login'
-      preLoaderRoute: typeof AuthLoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/dashboard': {
-      id: '/admin/dashboard'
-      path: '/dashboard'
-      fullPath: '/admin/dashboard'
-      preLoaderRoute: typeof AdminDashboardRouteImport
-      parentRoute: typeof AdminRoute
     }
   }
 }
 
-interface AdminRouteChildren {
-  AdminDashboardRoute: typeof AdminDashboardRoute
-}
-
-const AdminRouteChildren: AdminRouteChildren = {
-  AdminDashboardRoute: AdminDashboardRoute,
-}
-
-const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
-
 const rootRouteChildren: RootRouteChildren = {
-  BlankLayoutRoute: BlankLayoutRoute,
-  AdminRoute: AdminRouteWithChildren,
-  AuthLoginRoute: AuthLoginRoute,
+  NotFoundRoute: NotFoundRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -46,9 +46,7 @@ export class JwtService {
       async (error) => {
         const axiosError = error as AxiosError;
         const status = axiosError.response?.status;
-        const originalRequest = axiosError.config as
-          | (AxiosRequestConfig & { _retry?: boolean })
-          | undefined;
+        const originalRequest = axiosError.config as (AxiosRequestConfig & { _retry?: boolean }) | undefined;
 
         if (!originalRequest || status !== 401) {
           return Promise.reject(error);
@@ -78,14 +76,13 @@ export class JwtService {
           this.logout();
           return Promise.reject(refreshError);
         }
+
+        return Promise.reject(error);
       },
     );
   }
 
-  get<TResponse = any>(
-    url: string,
-    config?: AxiosRequestConfig,
-  ): Promise<AxiosResponse<TResponse>> {
+  get<TResponse = any>(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse<TResponse>> {
     return this.axin.get(url, config);
   }
 
@@ -113,10 +110,7 @@ export class JwtService {
     return this.axin.patch(url, data, config);
   }
 
-  delete<TResponse = any>(
-    url: string,
-    config?: AxiosRequestConfig,
-  ): Promise<AxiosResponse<TResponse>> {
+  delete<TResponse = any>(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse<TResponse>> {
     return this.axin.delete(url, config);
   }
 
@@ -130,17 +124,19 @@ export class JwtService {
   }
 
   getToken(): string | null {
-    const existingToken = this.accessToken;
+    const existingToken = localStorage.getItem(this.jwtConfig.storageTokenKeyName);
 
-    return existingToken;
+    return existingToken ? JSON.parse(existingToken) : null;
   }
 
   setToken(token: string) {
     this.accessToken = token;
+    localStorage.setItem(this.jwtConfig.storageTokenKeyName, JSON.stringify(token));
   }
 
   removeToken() {
     this.accessToken = null;
+    localStorage.removeItem(this.jwtConfig.storageTokenKeyName);
   }
 
   getStorageTokenKeyName() {
@@ -148,6 +144,7 @@ export class JwtService {
   }
 
   refreshToken(): Promise<AxiosResponse> {
+    // Backend saat ini menggunakan /auth/me untuk revalidasi sesi token yang ada.
     return this.axin.get(this.jwtConfig.refreshTokenUrl);
   }
 

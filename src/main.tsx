@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom/client';
 import { AbilityProvider } from '@casl/react';
 import { RouterProvider } from '@tanstack/react-router';
 
-import { FallbackSpinner } from '#/components/ui/fallback-spinner';
+import { FallbackSpinner } from '@/components/ui/fallback-spinner';
 
 import { ability } from './configs/acl/initial-ability';
 import { queryClient } from './integrations/tanstack-query/root-provider';
@@ -15,7 +15,7 @@ import { useAuth } from './utils/hooks/use-auth';
 import { router } from './router';
 
 function AppRouter() {
-  const appAbility = useAppAbility();
+  const ability = useAppAbility();
   const { isAuthenticated, isInitialLoading, userData } = useAuth();
   const { email, id, name, role } = userData;
 
@@ -37,14 +37,14 @@ function AppRouter() {
           isInitialLoading,
           userData,
         },
-        ability: appAbility,
+        ability,
       }}
     />
   );
 }
 
 // Render the app
-const rootElement = document.getElementById('app')!;
+const rootElement = document.getElementById('root')!;
 if (!rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement);
   root.render(

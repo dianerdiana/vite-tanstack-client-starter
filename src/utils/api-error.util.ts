@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import type { ErrorResponse } from '#/types/api-response.type';
+import type { ErrorResponse } from '@/types/api-response.type';
 
 export const isErrorResponse = (value: unknown): value is ErrorResponse => {
   if (!value || typeof value !== 'object') return false;
